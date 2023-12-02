@@ -1,6 +1,7 @@
 # Rewritten to only find first and last number
 # Still very spaghetti :) 
 
+import polars as pl
 with open('input.in') as f:
     content = [x.strip() for x in f.readlines()]
 
@@ -34,6 +35,31 @@ for line in content:
 
 print(total_sum)
 
-# Ans: 54676
+# Solution using Polars:
+
+pldf = pl.read_csv(
+    "input.in", has_header=False)
+p2 = pldf.to_series()
+
+masking = {"one": "o1ne", "two": "tw2o", "three": "thr3e", "four": "fo4ur",
+           "five": "fi5ve", "six": "si6x", "seven": "sev7en", "eight": "eig8ht", "nine": "n9ine"}
+
+for key, value in masking.items():
+    p2 = p2.str.replace_all(key, value)
+
+sum = 0
+
+for i in p2:
+    nums = []
+    for j in i:
+        if j.isdigit():
+            nums.append(j)
+    a = int(nums[0]+nums[-1])
+    sum += a
+
+print(f"With polars: {sum}")
+
+# 54676
+# With polars: 54676
 
 

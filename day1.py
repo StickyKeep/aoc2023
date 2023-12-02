@@ -1,5 +1,3 @@
-# Rewritten to only find first and last number
-# Still very spaghetti :)
 
 import polars as pl
 with open('input.in') as f:
@@ -7,6 +5,20 @@ with open('input.in') as f:
 
 nums = {"one": 1, "two": 2, "three": 3, "four": 4,
         "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}
+# Part 1:
+
+part_1_sum = 0
+
+for line in content:
+    digits = []
+    for char in line:
+        if char.isdigit():
+            digits.append(char)
+    part_1_sum += int(digits[0] + digits[-1])
+
+print(f"Part 1 sum: {part_1_sum}")
+
+# Part 2:
 
 
 def find_digits(s, number_dict, reverse=False):
@@ -28,14 +40,14 @@ def find_digits(s, number_dict, reverse=False):
                         return str(value)
 
 
-total_sum = 0
+part_2_sum = 0
 
 for line in content:
     n1 = find_digits(line, nums)
     n2 = find_digits(line, nums, reverse=True)
-    total_sum += int(n1 + n2)
+    part_2_sum += int(n1 + n2)
 
-print(total_sum)
+print(f"Part 2 sum: {part_2_sum}")
 
 # Solution using Polars:
 
@@ -74,5 +86,6 @@ for line in plseries:
 
 print(f"With polars: {polar_sum}")
 
-# 54676
+# Part 1 sum: 53921
+# Part 2 sum: 54676
 # With polars: 54676

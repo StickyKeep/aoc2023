@@ -56,21 +56,21 @@ for key, value in masking.items():
 polar_sum = 0
 
 for line in plseries:
-    a = None
-    b = None
+    first_digit = None
+    last_digit = None
 
     # Find first and last digit
-    for j in line:
-        if j.isdigit():
-            a = j
+    for char in line:
+        if char.isdigit():
+            first_digit = char
             # Then we put it in reverse
-            for n in line[::-1]:
-                if n.isdigit():
-                    b = n
+            for char_r in line[::-1]:
+                if char_r.isdigit():
+                    last_digit = char_r
                     break
             break
 
-    polar_sum += int(a + b)
+    polar_sum += int(first_digit + last_digit)
 
 print(f"With polars: {polar_sum}")
 

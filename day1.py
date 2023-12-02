@@ -1,5 +1,6 @@
-
 import polars as pl
+import time
+
 with open('input.in') as f:
     content = [x.strip() for x in f.readlines()]
 
@@ -19,7 +20,10 @@ for line in content:
 print(f"Part 1 sum: {part_1_sum}")
 
 # Part 2:
+first_try_start_time = time.time()
 
+with open('input.in') as f:
+    content = [x.strip() for x in f.readlines()]
 
 def find_digits(s, number_dict, reverse=False):
     if reverse == False:
@@ -47,9 +51,15 @@ for line in content:
     n2 = find_digits(line, nums, reverse=True)
     part_2_sum += int(n1 + n2)
 
+first_try_end_time = time.time()
+first_try_total_time = first_try_end_time - first_try_start_time
+
 print(f"Part 2 sum: {part_2_sum}")
+print(f"Time taken: {first_try_total_time:.5f}")
 
 # Solution using Polars:
+
+polars_start_time = time.time()
 
 pldf = pl.read_csv(
     "input.in", has_header=False)
@@ -84,8 +94,14 @@ for line in plseries:
 
     polar_sum += int(first_digit + last_digit)
 
+polars_end_time = time.time()
+polars_total_time = polars_end_time - polars_start_time
+
 print(f"With polars: {polar_sum}")
+print(f"Time taken: {polars_total_time:.5f}")
 
 # Part 1 sum: 53921
 # Part 2 sum: 54676
+# Time taken: 0.00708
 # With polars: 54676
+# Time taken: 0.00345

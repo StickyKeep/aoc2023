@@ -63,12 +63,10 @@ for line in p2:
     for j in line:
         if j.isdigit():
             a = j
-            break
-
-    # Then find last digit
-    for n in line[::-1]:
-        if n.isdigit():
-            b = n
+            for n in line[::-1]:
+                if n.isdigit():
+                    b = n
+                    break
             break
 
     sum += int(a + b)

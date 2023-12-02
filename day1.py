@@ -49,13 +49,23 @@ for key, value in masking.items():
 
 sum = 0
 
-for i in p2:
-    nums = []
-    for j in i:
+for line in p2:
+    a = None
+    b = None
+
+    # Find first digit
+    for j in line:
         if j.isdigit():
-            nums.append(j)
-    a = int(nums[0]+nums[-1])
-    sum += a
+            a = j
+            break
+
+    # Then find last digit
+    for n in line[::-1]:
+        if n.isdigit():
+            b = n
+            break
+        
+    sum += int(a + b)
 
 print(f"With polars: {sum}")
 

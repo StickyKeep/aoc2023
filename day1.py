@@ -41,7 +41,7 @@ print(total_sum)
 
 pldf = pl.read_csv(
     "input.in", has_header=False)
-p2 = pldf.to_series()
+plseries = pldf.to_series()
 
 # We can just replace the written out number to one that includes the digit in the middle
 # This handles cases where they overlap, for example like "twone", and we can just do
@@ -51,11 +51,11 @@ masking = {"one": "o1ne", "two": "tw2o", "three": "thr3e", "four": "fo4ur",
            "five": "fi5ve", "six": "si6x", "seven": "sev7en", "eight": "eig8ht", "nine": "n9ine"}
 
 for key, value in masking.items():
-    p2 = p2.str.replace_all(key, value)
+    plseries = plseries.str.replace_all(key, value)
 
-sum = 0
+polar_sum = 0
 
-for line in p2:
+for line in plseries:
     a = None
     b = None
 
@@ -63,15 +63,16 @@ for line in p2:
     for j in line:
         if j.isdigit():
             a = j
+            # Then we put it in reverse
             for n in line[::-1]:
                 if n.isdigit():
                     b = n
                     break
             break
 
-    sum += int(a + b)
+    polar_sum += int(a + b)
 
-print(f"With polars: {sum}")
+print(f"With polars: {polar_sum}")
 
 # 54676
 # With polars: 54676

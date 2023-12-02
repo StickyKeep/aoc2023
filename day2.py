@@ -41,6 +41,6 @@ for game, groups in enumerate(data, 1):
 print(f"Sum of indexes of possible games: {tsum}")
 print(f"Power sum of minimum number of colors needed: {power_sum}")
 
-# 2169
-# 60948
+# Sum of indexes of possible games: 2169
+# Power sum of minimum number of colors needed: 60948
 

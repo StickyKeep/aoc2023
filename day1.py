@@ -59,7 +59,7 @@ for line in p2:
     a = None
     b = None
 
-    # Find first digit
+    # Find first and last digit
     for j in line:
         if j.isdigit():
             a = j

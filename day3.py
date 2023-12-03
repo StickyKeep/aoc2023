@@ -27,7 +27,6 @@ for row, line in enumerate(data):
             i += 1
 
         if potential_number:
-            #print(row, i, potential_number)
             number = int(potential_number)
             number_length = len(potential_number)
             found_symbol = False
@@ -50,7 +49,7 @@ for row, line in enumerate(data):
 print(f"Part 1 sum: {total_sum}")
 
 
-# Copy paste for solution for part 2:
+# Copy paste and modify code for part 2:
 
 # Use two dictionaries to keep track of the multiplication and the number of times a cell has been multiplied
 # If a cell has been multiplied twice, i.e. the coordinate is adjacent to two numbers, add it to the total sum

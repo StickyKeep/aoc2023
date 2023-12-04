@@ -1,3 +1,5 @@
+# Chall: https://adventofcode.com/2023/day/4
+
 from collections import defaultdict
 
 with open("input.in", "r") as f:
@@ -27,6 +29,7 @@ for card, line in enumerate(data, 1):
     game = set(line[1].split())
     won = winning_numbers.intersection(game)
 
+    # If we win, add number of copies of the next cards we win (puh..)
     if len(won):
         for i in range(card + 1, card + len(won) + 1):
             winning_cards[i] = winning_cards.get(i,1) + winning_cards[card]

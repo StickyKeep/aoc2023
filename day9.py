@@ -13,7 +13,10 @@ sum = 0
 for going_out_of_variable_names in nums:
     sum += find_differences(going_out_of_variable_names)
 
-print(sum)
+print(f"Part 1 sum: {sum}")
+
+
+# Part 2: Just need to make small adjustment in find_differences() from pt. 1:
 
 def find_differences_pt2(nums_list):
     if all(number == 0 for number in nums_list):
@@ -27,4 +30,4 @@ sum = 0
 for going_out_of_variable_names in nums:
     sum += find_differences_pt2(going_out_of_variable_names)
 
-print(sum)
+print(f"Part 2 sum: {sum}")
